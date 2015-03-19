@@ -72,16 +72,16 @@ public class ExpedienteImpl implements Expediente {
 	@Override
 	public List<Nota> getNotasOrdenadasPorAsignatura() {
 		Comparator<Nota> comp = Comparator.comparing(Nota::getCursoAcademico);
-		List<Nota> res = new ArrayList<Nota>(comp.thenComparing(Comparator.naturalOrder()));
+		SortedSet<Nota> res = new TreeSet<Nota>(comp.thenComparing(Comparator.naturalOrder()));
 		res.addAll(getNotas());
 		
-		return res;
+		return new ArrayList<Nota>(res);
 	}
 
 	@Override
 	public Nota getMejorNota() {
 		Nota res;
-		Comparator<Nota> comp = Comparator.comparing(Nota::getMencionHonor).thenComparing(Nota::getValor).reversed().thenComparing(Nota::getConvocatoria).thenComparing(Nota::getCursoAcademico);
+		Comparator<Nota> comp = Comparator.comparing(Nota::getMencionHonor).reversed().thenComparing(Nota::getValor).reversed().thenComparing(Nota::getConvocatoria).thenComparing(Nota::getCursoAcademico);
 		SortedSet<Nota> notas = new TreeSet<Nota>(comp);
 		if(notas.isEmpty()) {
 			throw new NoSuchElementException("No existe ninguna nota.");
