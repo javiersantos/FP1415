@@ -71,7 +71,7 @@ public class ExpedienteImpl implements Expediente {
 	
 	@Override
 	public List<Nota> getNotasOrdenadasPorAsignatura() {
-		Comparator<Nota> comp = Comparator.comparing(Nota::getCursoAcademico);
+		Comparator<Nota> comp = Comparator.comparing(Nota::getAsignatura);
 		SortedSet<Nota> res = new TreeSet<Nota>(comp.thenComparing(Comparator.naturalOrder()));
 		res.addAll(getNotas());
 		
