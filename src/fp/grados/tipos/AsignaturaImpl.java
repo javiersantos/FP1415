@@ -72,17 +72,7 @@ public class AsignaturaImpl implements Asignatura {
 	@Override
 	public String getAcronimo() {
 		String acronimo = "";
-//		String acronimoAux = "";
-//		
-//		String[] split = nombre.split(" ");
-//		for(String str : split){
-//			String firstChar = str.valueOf(0);
-//			if(Character.isUpperCase(firstChar.charAt(0))){
-//				acronimoAux = firstChar;
-//				acronimo = acronimo + firstChar;
-//			}
-//		}
-	
+
 		String[] split = getNombre().split(" ");
 		for(int i=0; i<=split.length-1; i++){
 			String newName = split[i].trim();
