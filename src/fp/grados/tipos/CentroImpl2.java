@@ -2,6 +2,8 @@ package fp.grados.tipos;
 
 import java.util.Comparator;
 import java.util.Optional;
+import java.util.Set;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import fp.grados.excepciones.ExcepcionCentroOperacionNoPermitida;
@@ -22,4 +24,23 @@ public class CentroImpl2 extends CentroImpl implements Centro {
 		
 		return opt.get();
 	}
+	
+	public Integer[] getConteosEspacios() {
+		Stream<Espacio> stream = super.getEspacios().stream();
+		
+		return new Integer[] {contarUnTipo(stream, TipoEspacio.TEORIA), contarUnTipo(stream, TipoEspacio.LABORATORIO), contarUnTipo(stream, TipoEspacio.SEMINARIO), contarUnTipo(stream, TipoEspacio.EXAMEN), contarUnTipo(stream, TipoEspacio.OTRO)};
+	}
+	
+	private int contarUnTipo(Stream<Espacio> stream, TipoEspacio te) {
+		return (int) stream.filter(e -> e.getTipo().equals(te)).count();
+	}
+	
+	public Set<Profesor> getProfesores() {
+		return this.getDespachos().stream().flatMap(d -> d.getProfesores().stream()).collect(Collectors.toSet());
+	}
+
+	public Set<Profesor> getProfesores(Departamento d) {
+		return this.getProfesores().stream().filter(p -> p.getDepartamento().equals(d)).collect(Collectors.toSet());
+	}
+	
 }
