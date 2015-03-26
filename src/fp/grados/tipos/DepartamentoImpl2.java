@@ -27,12 +27,11 @@ public class DepartamentoImpl2 extends DepartamentoImpl implements Departamento 
 	}
 	
 	public Boolean estanTodasAsignaturasAsignadas() {
-		Boolean res = true;
-		Stream<Asignatura> stream = super.getAsignaturas().stream().forEach();
+		return super.getAsignaturas().stream().allMatch(x->existeProfesorAsignado(x));
 	}
 	
 	public void eliminaAsignacionProfesorado(Asignatura a) {
-		super.getProfesores().stream().filter(p -> p.getAsignaturas().contains(a)).forEach(Profesor::eliminaAsignatura);
+		super.getProfesores().stream().filter(p -> p.getAsignaturas().contains(a)).forEach(x -> x.eliminaAsignatura(a));
 	}
 	
 }
