@@ -1,6 +1,5 @@
 package fp.grados.tipos;
 
-import java.util.stream.Stream;
 
 public class DepartamentoImpl2 extends DepartamentoImpl implements Departamento {
 
@@ -17,13 +16,14 @@ public class DepartamentoImpl2 extends DepartamentoImpl implements Departamento 
 	}
 	
 	public Boolean existeProfesorAsignado(Asignatura a) {
-		Boolean res = false;
-		Stream<Profesor> stream = super.getProfesores().stream().filter(p -> p.getAsignaturas().contains(a));
-		if(stream.count() > 0) {
-			res = true;
-		}
-		
-		return res;
+		return super.getProfesores().stream().anyMatch(x -> x.getAsignaturas().contains(a));
+//		Boolean res = false;
+//		Stream<Profesor> stream = super.getProfesores().stream().filter(p -> p.getAsignaturas().contains(a));
+//		if(stream.count() > 0) {
+//			res = true;
+//		}
+//		
+//		return res;
 	}
 	
 	public Boolean estanTodasAsignaturasAsignadas() {
