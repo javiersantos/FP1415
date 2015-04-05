@@ -43,4 +43,19 @@ public class CentroImpl2 extends CentroImpl implements Centro {
 		return this.getProfesores().stream().filter(p -> p.getDepartamento().equals(d)).collect(Collectors.toSet());
 	}
 	
+	// http://www.leveluplunch.com/java/examples/filter-collection-by-class-type/
+	public Set<Despacho> getDespachos() {
+		return this.getEspacios().stream().filter(e -> e instanceof Despacho).map(e -> (Despacho) e).collect(Collectors.toSet());
+	}
+	
+	public Set<Despacho> getDespachos(Departamento d) {
+		return this.getDespachos().stream().filter(dep -> existeProfesorDepartamento(d)).collect(Collectors.toSet());
+		
+	}
+	
+	// existeProfesorDepartamento
+	private Boolean existeProfesorDepartamento(Departamento d) {
+		return this.getProfesores().stream().anyMatch(p -> p.getDepartamento().equals(d));
+	}
+	
 }
