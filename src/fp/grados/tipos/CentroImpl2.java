@@ -1,8 +1,11 @@
 package fp.grados.tipos;
 
+import java.util.Collection;
 import java.util.Comparator;
 import java.util.Optional;
 import java.util.Set;
+import java.util.SortedMap;
+import java.util.TreeMap;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -26,13 +29,11 @@ public class CentroImpl2 extends CentroImpl implements Centro {
 	}
 	
 	public Integer[] getConteosEspacios() {
-		Stream<Espacio> stream = super.getEspacios().stream();
-		
-		return new Integer[] {contarUnTipo(stream, TipoEspacio.TEORIA), contarUnTipo(stream, TipoEspacio.LABORATORIO), contarUnTipo(stream, TipoEspacio.SEMINARIO), contarUnTipo(stream, TipoEspacio.EXAMEN), contarUnTipo(stream, TipoEspacio.OTRO)};
+		return new Integer[] {contarUnTipo(super.getEspacios(), TipoEspacio.TEORIA), contarUnTipo(super.getEspacios(), TipoEspacio.LABORATORIO), contarUnTipo(super.getEspacios(), TipoEspacio.SEMINARIO), contarUnTipo(super.getEspacios(), TipoEspacio.EXAMEN), contarUnTipo(super.getEspacios(), TipoEspacio.OTRO)};
 	}
 	
-	private int contarUnTipo(Stream<Espacio> stream, TipoEspacio te) {
-		return (int) stream.filter(e -> e.getTipo().equals(te)).count();
+	private int contarUnTipo(Collection<Espacio> c, TipoEspacio te) {
+		return (int) c.stream().filter(e -> e.getTipo().equals(te)).count();
 	}
 	
 	public Set<Profesor> getProfesores() {
@@ -52,10 +53,18 @@ public class CentroImpl2 extends CentroImpl implements Centro {
 		return this.getDespachos().stream().filter(dep -> existeProfesorDepartamento(d)).collect(Collectors.toSet());
 		
 	}
-	
-	// existeProfesorDepartamento
 	private Boolean existeProfesorDepartamento(Departamento d) {
 		return this.getProfesores().stream().anyMatch(p -> p.getDepartamento().equals(d));
+	}
+	
+	public SortedMap<Profesor, Despacho> getDespachosPorProfesor() {
+		return this.getProfesores().stream().filter(p -> tieneDespacho(p)).collect(Collectors.toMap(p -> p, p -> buscaDespacho(p), (p1, p2) -> p1, TreeMap::new));
+	}
+	private Despacho buscaDespacho(Profesor p) {
+		return this.getDespachos().stream().filter(d -> d.getProfesores().contains(p)).findFirst().get();
+	}
+	private Boolean tieneDespacho(Profesor p) {
+		return this.getDespachos().stream().anyMatch(d -> d.getProfesores().contains(p));
 	}
 	
 }

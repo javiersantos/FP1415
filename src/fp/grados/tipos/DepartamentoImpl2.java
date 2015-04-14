@@ -1,5 +1,10 @@
 package fp.grados.tipos;
 
+import java.util.SortedMap;
+import java.util.SortedSet;
+import java.util.TreeMap;
+import java.util.stream.Collectors;
+
 
 public class DepartamentoImpl2 extends DepartamentoImpl implements Departamento {
 
@@ -27,11 +32,15 @@ public class DepartamentoImpl2 extends DepartamentoImpl implements Departamento 
 	}
 	
 	public Boolean estanTodasAsignaturasAsignadas() {
-		return super.getAsignaturas().stream().allMatch(x->existeProfesorAsignado(x));
+		return getAsignaturas().stream().allMatch(x->existeProfesorAsignado(x));
 	}
 	
 	public void eliminaAsignacionProfesorado(Asignatura a) {
 		super.getProfesores().stream().filter(p -> p.getAsignaturas().contains(a)).forEach(x -> x.eliminaAsignatura(a));
+	}
+	
+	public SortedMap<Profesor, SortedSet<Tutoria>> getTutoriasPorProfesor() {
+		return this.getProfesores().stream().collect(Collectors.toMap(p -> p,  p -> p.getTutorias(), (p1, p2) -> p1, TreeMap::new));
 	}
 	
 }

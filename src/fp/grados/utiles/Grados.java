@@ -25,12 +25,14 @@ import fp.grados.tipos.CentroImpl;
 import fp.grados.tipos.CentroImpl2;
 import fp.grados.tipos.Departamento;
 import fp.grados.tipos.DepartamentoImpl;
+import fp.grados.tipos.DepartamentoImpl2;
 import fp.grados.tipos.Despacho;
 import fp.grados.tipos.DespachoImpl;
 import fp.grados.tipos.Espacio;
 import fp.grados.tipos.EspacioImpl;
 import fp.grados.tipos.Grado;
 import fp.grados.tipos.GradoImpl;
+import fp.grados.tipos.GradoImpl2;
 import fp.grados.tipos.Profesor;
 import fp.grados.tipos.ProfesorImpl;
 import fp.grados.tipos.ProfesorImpl2;
@@ -75,7 +77,12 @@ public class Grados {
 	// DEPARTAMENTO
 	
 	public static Departamento createDepartamento(String nombre) {
-		Departamento d = new DepartamentoImpl(nombre);
+		Departamento d = null;
+		if(usarJava8) {
+			d = new DepartamentoImpl2(nombre);
+		} else {
+			d = new DepartamentoImpl(nombre);
+		}
 		departamentos.add(d);
 		
 		return d;
@@ -441,7 +448,13 @@ public class Grados {
 	// GRADO
 	
 	public static Grado createGrado(String nombre, Set<Asignatura> asignaturasObligatorias, Set<Asignatura> asignaturasOptativas, Double creditosMinimosOptativas) {
-		Grado g = new GradoImpl(nombre, asignaturasObligatorias, asignaturasOptativas, creditosMinimosOptativas);
+		Grado g = null;
+		if(usarJava8) {
+			g = new GradoImpl2(nombre, asignaturasObligatorias, asignaturasOptativas, creditosMinimosOptativas);
+		} else {
+			g = new GradoImpl(nombre, asignaturasObligatorias, asignaturasOptativas, creditosMinimosOptativas);
+		}
+		grados.add(g);
 		return g;
 	}
 	
@@ -489,5 +502,5 @@ public class Grados {
 		}
 		return res;
 	}
-	
+
 }
