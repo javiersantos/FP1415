@@ -34,6 +34,9 @@ public class ProfesorImpl2 extends PersonaImpl implements Profesor {
 //		this.creditos = new ArrayList<Double>();
 		this.asigDedicacion = new HashMap<Asignatura, Double>();
 		this.departamento = departamento;
+		if(departamento != null) {
+			departamento.nuevoProfesor(this);
+		}
 	}
 	
 	private void checkEdad(LocalDate date) {

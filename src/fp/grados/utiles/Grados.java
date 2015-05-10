@@ -9,6 +9,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.SortedSet;
+import java.util.TreeSet;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
@@ -89,7 +91,7 @@ public class Grados {
 	}
 	
 	public static Set<Departamento> getDepartamentosCreados() {
-		return departamentos;
+		return new HashSet<Departamento>(departamentos);
 	}
 	
 	public static Integer getNumDepartamentosCreados() {
@@ -113,7 +115,10 @@ public class Grados {
 	}
 	
 	public static Beca createBeca(Beca beca) {
-		return new BecaImpl(beca.getCodigo(), beca.getCuantiaTotal(), beca.getDuracion(), beca.getTipo());
+		Beca b = new BecaImpl(beca.getCodigo(), beca.getCuantiaTotal(), beca.getDuracion(), beca.getTipo());
+		becas.add(beca);
+		actualizaNumBecasPorTipo(b);
+		return b;
 	}
 	
 	public static Beca createBeca(String s) {
@@ -128,7 +133,7 @@ public class Grados {
 	}
 	
 	public static Set<Beca> getBecasCreadas() {
-		return becas;
+		return new HashSet<Beca>(becas);
 	}
 	
 	public static Integer getNumBecasCreadas() {
@@ -215,6 +220,7 @@ public class Grados {
 	public static Profesor createProfesor(Profesor profesor) {
 		Profesor p = createProfesor(profesor.getDNI(), profesor.getNombre(), profesor.getApellidos(), profesor.getFechaNacimiento(), profesor.getEmail(), profesor.getCategoria(), profesor.getDepartamento());
 		copiaAsignaturasYTutorias(p, profesor);
+		profesores.add(p);
 		return p;
 	}
 	
@@ -233,7 +239,7 @@ public class Grados {
 	}
 	
 	public static Set<Profesor> getProfesoresCreados() {
-		return profesores;
+		return new HashSet<Profesor>(profesores);
 	}
 	
 	public static void setUsarImplementacionMapProfesor(Boolean usarMap) {
@@ -269,12 +275,28 @@ public class Grados {
 	}
 	
 	public static Integer getNumAlumnosCreados() {
-		return alumnos.size();
+		return getAlumnosCreados().size();
 	}
 	
 	public static Set<Alumno> getAlumnosCreados() {
-		return alumnos;
+		return new HashSet<Alumno>(alumnos);
 	}
+	
+//	public static Set<Asignatura> getAsignaturasCreadas() {
+//		return new HashSet<Asignatura>(asigCod.values());
+//	}
+//	
+//	public static Integer getNumAsignaturasCreadas() {
+//		return getAsignaturasCreadas().size();
+//	}
+//	
+//	public static Asignatura getAsignaturaCreada(String codigo) {
+//		return asigCod.get(codigo);
+//	}
+//	
+//	public static Set<String> getCodigosAsignaturasCreadas() {
+//		return new HashSet<String>(asigCod.keySet());
+//	}
 	
 	// CENTRO
 	
@@ -294,11 +316,11 @@ public class Grados {
 	}
 	
 	public static Integer getNumCentrosCreados() {
-		return centros.size();
+		return getCentrosCreados().size();
 	}
 	
 	public static Set<Centro> getCentrosCreados() {
-		return centros;
+		return new HashSet<Centro>(centros);
 	}
 	
 	public static Integer getMaxPlantas() {
@@ -383,14 +405,16 @@ public class Grados {
 	
 	// ESPACIO
 	
-	public static Espacio createEspacio(TipoEspacio tipo, String nombre, Integer capacidad, Integer planta) {
+	public static Espacio createEspacio(String nombre, Integer planta, Integer capacidad, TipoEspacio tipo) {
 		Espacio e = new EspacioImpl(tipo, nombre, capacidad, planta);
 		espacios.add(e);
 		return e;
 	}
 	
 	public static Espacio createEspacio(Espacio espacio) {
-		return new EspacioImpl(espacio.getTipo(), espacio.getNombre(), espacio.getCapacidad(), espacio.getPlanta());
+		Espacio e = new EspacioImpl(espacio.getTipo(), espacio.getNombre(), espacio.getCapacidad(),  espacio.getPlanta());
+		espacios.add(e);
+		return e;
 	}
 	
 	public static Espacio createEspacio(String s) {
@@ -400,11 +424,11 @@ public class Grados {
 	}
 	
 	public static Integer getNumEspaciosCreados() {
-		return espacios.size();
+		return getEspaciosCreados().size();
 	}
 	
-	public static Set<Espacio> getEspaciosCreados() {
-		return espacios;
+	public static SortedSet<Espacio> getEspaciosCreados() {
+		return new TreeSet<Espacio>(espacios);
 	}
 	
 	public static Integer getPlantaMayorEspacio() {
@@ -459,11 +483,11 @@ public class Grados {
 	}
 	
 	public static Integer getNumGradosCreados() {
-		return grados.size();
+		return (new HashSet<Grado>(grados)).size();
 	}
 	
 	public static Set<Grado> getGradosCreados() {
-		return grados;
+		return new HashSet<Grado>(grados);
 	}
 	
 	public static Double getMediaAsignaturasGrados() {

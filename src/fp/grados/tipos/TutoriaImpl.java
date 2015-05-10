@@ -31,6 +31,43 @@ public class TutoriaImpl implements Tutoria {
 		this.horaComienzo = horaComienzo;
 		this.horaFin = horaComienzo.plusMinutes(duracion);
 	}
+	
+	public TutoriaImpl(String s) {
+		String[] split = s.split(",");
+		if(split.length != 3) {
+			throw new ExcepcionTutoriaNoValida("No cumple la condición de constructor.");
+		} else {
+			switch (split[0].trim()) {
+			case "L":
+				this.diaSemana = DayOfWeek.MONDAY;
+				break;
+			case "M":
+				this.diaSemana = DayOfWeek.TUESDAY;
+				break;
+			case "X":
+				this.diaSemana = DayOfWeek.WEDNESDAY;
+				break;
+			case "J":
+				this.diaSemana = DayOfWeek.THURSDAY;
+				break;
+			case "V":
+				this.diaSemana = DayOfWeek.FRIDAY;
+				break;
+			case "S":
+				this.diaSemana = DayOfWeek.SATURDAY;
+				break;
+			case "D":
+				this.diaSemana = DayOfWeek.SUNDAY;
+				break;
+			default:
+				break;
+			}
+			checkDia(this.diaSemana);
+			this.horaComienzo = LocalTime.parse(split[1].trim());
+			this.horaFin = LocalTime.parse(split[2].trim());
+			checkTiempo((int) this.horaComienzo.until(this.horaFin, ChronoUnit.MINUTES));
+		}
+	}
 
 	private void checkDia(DayOfWeek dia){
 		if(!(dia.getValue()==1 || dia.getValue()==2 || dia.getValue()==3 || dia.getValue()==4 || dia.getValue()==5 )){

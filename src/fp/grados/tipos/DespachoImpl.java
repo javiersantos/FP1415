@@ -29,7 +29,7 @@ public class DespachoImpl extends EspacioImpl implements Despacho {
 	}
 	
 	public DespachoImpl(String s) {
-		super(s);
+		super(TipoEspacio.OTRO, (s.split(","))[0].trim(), new Integer((s.split(","))[2].trim()), new Integer((s.split(","))[1].trim()));
 		this.profesores = new HashSet<Profesor>();
 	}
 	

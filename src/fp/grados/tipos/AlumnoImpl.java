@@ -137,7 +137,7 @@ public class AlumnoImpl extends PersonaImpl implements Alumno {
 	}
 	
 	public String toString() {
-		return "(" + getCurso() + "ยบ) " + super.toString();
+		return "(" + getCurso() + "บ) " + super.toString();
 	}
 	
 }

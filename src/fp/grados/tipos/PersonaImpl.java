@@ -43,7 +43,7 @@ public class PersonaImpl implements Persona {
 			this.DNI = split[0].trim();
 			checkDNI(this.DNI);
 			this.nombre = split[1].trim();
-			this.apellidos = split[2];
+			this.apellidos = split[2].trim();
 			this.fechaNacimiento = LocalDate.parse(split[3].trim(), DateTimeFormatter.ofPattern("d/M/yyyy"));
 			this.email = split[4].trim();
 			checkEmail(this.email);

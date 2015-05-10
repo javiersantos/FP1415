@@ -9,7 +9,7 @@ public interface Departamento extends Comparable<Departamento> {
 	Set<Asignatura> getAsignaturas();
 	Set<Profesor> getProfesores();
 	SortedMap<Asignatura, SortedSet<Profesor>> getProfesoresPorAsignatura();
-	SortedMap<Profesor, SortedSet<Tutoria>> getTutoriaPorProfesor();
+	SortedMap<Profesor, SortedSet<Tutoria>> getTutoriasPorProfesor();
 	
 	void nuevaAsignatura(Asignatura asig);
 	void eliminaAsignatura(Asignatura asig);

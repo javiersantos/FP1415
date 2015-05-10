@@ -139,7 +139,7 @@ public class DepartamentoImpl implements Departamento {
 	}
 
 	@Override
-	public SortedMap<Profesor, SortedSet<Tutoria>> getTutoriaPorProfesor() {
+	public SortedMap<Profesor, SortedSet<Tutoria>> getTutoriasPorProfesor() {
 		SortedMap<Profesor, SortedSet<Tutoria>> res = new TreeMap<Profesor, SortedSet<Tutoria>>();
 		for(Profesor p : getProfesores()) {
 			res.put(p, p.getTutorias());

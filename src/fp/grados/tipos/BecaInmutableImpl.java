@@ -83,8 +83,8 @@ final public class BecaInmutableImpl implements BecaInmutable {
 	// CRITERIO DE IGUALDAD //
 	public boolean equals(Object o) {
 		boolean res = false;
-		if(o instanceof Beca){
-			Beca b = (Beca)o;
+		if(o instanceof BecaInmutable){
+			BecaInmutable b = (BecaInmutable)o;
 			res = getCodigo().equals(b.getCodigo()) && getTipo().equals(b.getTipo());
 		}
 		return res;

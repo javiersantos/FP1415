@@ -36,7 +36,7 @@ public class NotaImpl implements Nota {
 	public NotaImpl(String s) {
 		String[] split = s.split(";");
 		if(split.length != 5) {
-			throw new IllegalArgumentException("No cumple la condiciÃ³n de constructor.");
+			throw new IllegalArgumentException("No cumple la condición de constructor.");
 		} else {
 			this.asignatura = new AsignaturaImpl(split[0].trim());
 			this.cursoAcademico = new Integer(split[1].trim());

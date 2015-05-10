@@ -35,7 +35,7 @@ public class TestCentro {
 		Centro c = new CentroImpl("ETSII", "Reina Mercedes", 3, 1);
 		Espacio e1 = new EspacioImpl(TipoEspacio.OTRO, "Grupo 1", 200, 1);
 		Espacio e2 = new EspacioImpl(TipoEspacio.OTRO, "Grupo 2", 200, 1);
-		Espacio e3 = new EspacioImpl(TipoEspacio.EXAMEN, "Grupo 3", 200, 1);
+		Espacio e3 = new EspacioImpl(TipoEspacio.OTRO, "Grupo 3", 200, 1);
 		c.nuevoEspacio(e1);
 		c.nuevoEspacio(e2);
 		c.nuevoEspacio(e3);

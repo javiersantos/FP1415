@@ -14,8 +14,8 @@ public class EspacioImpl implements Espacio {
 		
 		this.tipo = tipo;
 		this.nombre = nombre;
-		this.capacidad = capacidad;
 		this.planta = planta;
+		this.capacidad = capacidad;
 		
 	}
 	
@@ -25,9 +25,9 @@ public class EspacioImpl implements Espacio {
 			throw new IllegalArgumentException("No cumple la condición del constructor.");
 		} else {
 			this.nombre = split[0].trim();
-			this.capacidad = new Integer(split[1].trim());
+			this.planta = new Integer(split[1].trim());
+			this.capacidad = new Integer(split[2].trim());
 			checkCapacidad(this.capacidad);
-			this.planta = new Integer(split[2].trim());
 			this.tipo = TipoEspacio.valueOf(split[3].trim());
 		}
 	}
