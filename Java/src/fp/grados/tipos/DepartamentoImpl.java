@@ -151,7 +151,7 @@ public class DepartamentoImpl implements Departamento {
 	public Profesor getProfesorMaximaDedicacionMediaPorAsignatura() {
 		Stream<Profesor> stream = getProfesores().stream().filter(x->x.getAsignaturas().size()>0);
 		Optional<Profesor> opt = stream.max(Comparator.comparing(x->x.getDedicacionTotal()/x.getAsignaturas().size()));
-		if(!(opt.isPresent())) {
+		if(!opt.isPresent()) {
 			throw new NoSuchElementException("No hay profesores.");
 		}
 		

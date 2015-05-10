@@ -8,8 +8,6 @@ import java.util.TreeMap;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import fp.grados.excepciones.ExcepcionAlumnoOperacionNoPermitida;
-
 public class AlumnoImpl2 extends AlumnoImpl implements Alumno {
 	
 	public AlumnoImpl2(String DNI, String nombre, String apellidos, LocalDate fecha, String email){
@@ -22,19 +20,19 @@ public class AlumnoImpl2 extends AlumnoImpl implements Alumno {
 	
 	@Override
 	public Integer getCurso() {
-		Stream<Asignatura> stream = super.getAsignaturas().stream();
+		Integer res = 0;
+		Stream<Asignatura> stream = this.getAsignaturas().stream();
 		Optional<Asignatura> opt = stream.max(Comparator.comparing(Asignatura::getCurso));
-		if(!(opt.isPresent())) {
-			throw new ExcepcionAlumnoOperacionNoPermitida("No hay asignaturas en el alumno.");
+		if(opt.isPresent()) {
+			res = opt.get().getCurso();
 		}
 		
-		return opt.get().getCurso();
+		return res;
 	}
 	
 	public SortedMap<Asignatura, Calificacion> getCalificacionPorAsignatura() {
-		// Map<Asignatura, Calification> = ...
-		// return new TreeMap<Asignatura, Calificacion>(res);
-		return this.getExpediente().getNotas().stream().collect(Collectors.toMap(n -> n.getAsignatura(), n -> n.getCalificacion(), (n1, n2) -> n1, TreeMap::new));
+		// return this.getExpediente().getNotas().stream().collect(Collectors.toMap(n -> n.getAsignatura(), n -> n.getCalificacion(), (n1, n2) -> n1, TreeMap::new));
+		return this.getExpediente().getNotas().stream().collect(Collectors.toMap(Nota::getAsignatura, Nota::getCalificacion, (p1, p2) -> p1, TreeMap::new));
 	}
 
 }

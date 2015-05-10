@@ -43,8 +43,10 @@ public class ProfesorImpl extends PersonaImpl implements Profesor {
 	}
 	
 	private void checkAsignaturaDepartamento(Asignatura asig) {
-		if(!(getDepartamento().getAsignaturas().contains(asig))) {
-			throw new ExcepcionProfesorOperacionNoPermitida("En el departamento no está incluido la asignatura.");
+		if(!(getDepartamento() == null)) {
+			if(!(getDepartamento().getAsignaturas().contains(asig))) {
+				throw new ExcepcionProfesorOperacionNoPermitida("En el departamento no está incluido la asignatura.");
+			}
 		}
 	}
 	
