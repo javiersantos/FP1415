@@ -271,7 +271,9 @@ public class Grados {
 	}
 	
 	public static Alumno createAlumno(Alumno alumno) {
-		return new AlumnoImpl(alumno.getDNI(), alumno.getNombre(), alumno.getApellidos(), alumno.getFechaNacimiento(), alumno.getEmail());
+		Alumno res = new AlumnoImpl(alumno.getDNI(), alumno.getNombre(), alumno.getApellidos(), alumno.getFechaNacimiento(), alumno.getEmail());
+		alumnos.add(res);
+		return res;
 	}
 	
 	public static Integer getNumAlumnosCreados() {

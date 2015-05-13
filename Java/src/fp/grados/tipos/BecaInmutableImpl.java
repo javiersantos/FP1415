@@ -20,16 +20,30 @@ final public class BecaInmutableImpl implements BecaInmutable {
 		this.cuantiaTotal = cuantiaTotal;
 		this.duracion = duracion;
 		this.tipo = tipo;
-
 	}
 	
 	public BecaInmutableImpl(String codigo, TipoBeca tipo){
+		checkCodigo(codigo);
+		
 		this.codigo = codigo;
 		this.tipo = tipo;
 		this.cuantiaTotal = cuantiaTotalDefault;
 		this.duracion = duracionDefault;
-		
-		checkCodigo(codigo);
+	}
+	
+	public BecaInmutableImpl(String s) {
+		String[] split = s.split(",");
+		if(split.length != 4) {
+			throw new IllegalArgumentException("No cumple la condición del constructor.");
+		} else {
+			this.codigo = split[0].trim();
+			checkCodigo(this.codigo);
+			this.cuantiaTotal = new Double(split[1].trim());
+			checkCuantiaMinima(this.cuantiaTotal);
+			this.duracion = new Integer(split[2].trim());
+			checkDuracionMinima(this.duracion);
+			this.tipo = TipoBeca.valueOf(split[3].trim());
+		}
 	}
 	
 	private void checkCodigo(String code){
