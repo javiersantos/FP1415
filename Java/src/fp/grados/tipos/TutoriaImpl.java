@@ -60,7 +60,7 @@ public class TutoriaImpl implements Tutoria {
 				this.diaSemana = DayOfWeek.SUNDAY;
 				break;
 			default:
-				break;
+				throw new ExcepcionTutoriaNoValida("El dia de la tutoria no es valido.");
 			}
 			checkDia(this.diaSemana);
 			this.horaComienzo = LocalTime.parse(split[1].trim());

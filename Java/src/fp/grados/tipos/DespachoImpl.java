@@ -33,6 +33,15 @@ public class DespachoImpl extends EspacioImpl implements Despacho {
 		this.profesores = new HashSet<Profesor>();
 	}
 	
+//	public DespachoImpl(String s) {
+//		String[] split = s.split(",");
+//		if (split.length != 3) {
+//			throw new IllegalArgumentException("No cumple la condición del constructor.");
+//		} else {
+//			new DespachoImpl(split[0].trim(), new Integer(split[1].trim()), new Integer(split[2].trim()));
+//		}
+//	}
+	
 	private void checkProfesores(Set<Profesor> teachers) {
 		if(teachers.size()>getCapacidad()){
 			throw new ExcepcionDespachoNoValido("El número de profesores no puede ser mayor a la capacidad del despacho.");

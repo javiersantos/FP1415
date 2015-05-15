@@ -36,9 +36,14 @@ final public class NotaInmutableImpl implements Nota {
 	public NotaInmutableImpl(String s) {
 		String[] split = s.split(";");
 		if(split.length != 5) {
-			throw new IllegalArgumentException("No cumple la condición de constructor.");
+			throw new IllegalArgumentException("No cumple la condicion de constructor.");
 		} else {
-			this.asignatura = new AsignaturaImpl(split[0].trim());
+			String[] splitAsignatura = (split[0].trim()).split("#");
+			if (splitAsignatura.length != 5) {
+				throw new ExcepcionNotaNoValida("No cumple la condiciÃ³n del constructor.");
+			} else{
+				this.asignatura = new AsignaturaImpl(splitAsignatura[0].trim(), splitAsignatura[1].trim(), new Double(splitAsignatura[2].trim()), TipoAsignatura.valueOf(splitAsignatura[3].trim()), new Integer(splitAsignatura[4].trim()), null);
+			}
 			this.cursoAcademico = new Integer(split[1].trim());
 			this.convocatoria = Convocatoria.valueOf(split[2].trim());
 			this.valor = new Double(split[3].trim());
@@ -50,14 +55,14 @@ final public class NotaInmutableImpl implements Nota {
 	
 	private void checkNota(Double score){
 		if(!(score>=0 && score<=10)){
-			throw new ExcepcionNotaNoValida("La calificación debe estar comprendida entre 0 y 10.");
+			throw new ExcepcionNotaNoValida("La calificacion debe estar comprendida entre 0 y 10.");
 		}
 	}
 	
 	private void checkMencionHonor(Boolean mencion, Double score){
 		if(mencion){
 			if(score<9){
-				throw new ExcepcionNotaNoValida("Solo puede asignarse mención de honor para notas mayor de 9.");
+				throw new ExcepcionNotaNoValida("Solo puede asignarse mencion de honor para notas mayor de 9.");
 			}
 		}
 	}
