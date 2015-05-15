@@ -9,8 +9,12 @@
 #define INCLUDES_ASIGNATURA_H_
 
 #include <stdio.h>
+#include "cadena.h"
+#include "logico.h"
 #include "tipoAsignatura.h"
 #define NUM_MAX_ASIGNATURAS 100
+
+typedef char TipoCodigo[8];
 
 typedef struct {
 	Cadena nombre;
@@ -22,7 +26,6 @@ typedef struct {
 }Asignatura;
 
 typedef Asignatura* PAsignatura;
-typedef char TipoCodigo[8];
 typedef Asignatura ArrayAsignaturas[NUM_MAX_ASIGNATURAS];
 
 int inicializaAsignatura(PAsignatura, const	Cadena, const TipoCodigo, double, TipoAsignatura, int, const Cadena);

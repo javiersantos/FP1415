@@ -8,6 +8,8 @@
 #ifndef INCLUDES_TIPOASIGNATURA_H_
 #define INCLUDES_TIPOASIGNATURA_H_
 
+#include "cadena.h"
+
 typedef enum {ANUAL, PRIMER_CUATRIMESTRE, SEGUNDO_CUATRIMESTRE}TipoAsignatura;
 
 void deTipoAsignaturaACadena(Cadena, TipoAsignatura);

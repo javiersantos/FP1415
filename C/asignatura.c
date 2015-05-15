@@ -9,7 +9,7 @@
 int inicializaAsignatura(PAsignatura res, const	Cadena nombre, const TipoCodigo	codigo, double creditos, TipoAsignatura	 tipo, int curso, const	Cadena departamento) {
 	int ok = 0;
 	if (!compruebaCodigo(codigo) || !compruebaCreditos(creditos) || !compruebaCurso(curso)) {
-		printf("asignatura_c.inicializaAsignatura: Error en parámetros");
+		printf("asignatura_c.inicializaAsignatura: Error en parametros");
 		ok = -1;
 	} else {
 		strcpy(res->nombre, nombre);
@@ -19,6 +19,7 @@ int inicializaAsignatura(PAsignatura res, const	Cadena nombre, const TipoCodigo	
 		res->curso = curso;
 		strcpy(res->departamento, departamento);
 	}
+	return ok;
 }
 
 Logico compruebaCodigo(const TipoCodigo codigo) {
@@ -97,12 +98,36 @@ int	leeAsignaturaTeclado(PAsignatura res) {
 }
 
 void muestraAsignatura(Asignatura a) {
+	Cadena acronimo, tipo;
 
-
+	printf("Nombre: %s", a.nombre);
+	getAcronimo(a, acronimo);
+	printf("Acronimo: %s", acronimo);
+	printf("Codigo: %s", a.codigo);
+	printf("Creditos: %lf", a.creditos);
+	deTipoAsignaturaACadena(tipo, a.tipo);
+	printf("Tipo: %s", tipo);
+	printf("Curso: %d", a.curso);
+	printf("Departamento: %s", a.departamento);
 }
 
 int	leeAsignaturasTeclado(ArrayAsignaturas res) {
+	int resultados;
+	int i = 0;
 
+	printf("Introduce el numero de resultados: ");
+	fflush(stdout);
+	scanf("%d", &resultados);
+
+	if (resultados >= sizeof(res)) {
+		printf("Introduce el numero de resultados: ");
+		fflush(stdout);
+		scanf("%d", &resultados);
+	} else {
+		for (i = 0; i < resultados; i++) {
+
+		}
+	}
 
 }
 
