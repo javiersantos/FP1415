@@ -35,7 +35,7 @@ public class TutoriaImpl implements Tutoria {
 	public TutoriaImpl(String s) {
 		String[] split = s.split(",");
 		if(split.length != 3) {
-			throw new ExcepcionTutoriaNoValida("No cumple la condición de constructor.");
+			throw new IllegalArgumentException("No cumple la condiciï¿½n de constructor.");
 		} else {
 			switch (split[0].trim()) {
 			case "L":

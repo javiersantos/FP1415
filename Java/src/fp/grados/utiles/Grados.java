@@ -389,15 +389,19 @@ public class Grados {
 	
 	public static Despacho createDespacho(String nombre, Integer capacidad, Integer planta) {
 		Despacho d = new DespachoImpl(nombre, capacidad, planta);
+		espacios.add(d);
 		return d;
 	}
 	
 	public static Despacho createDespacho(Despacho despacho) {
-		return new DespachoImpl(despacho.getNombre(), despacho.getCapacidad(), despacho.getPlanta());
+		Despacho d = new DespachoImpl(despacho.getNombre(), despacho.getCapacidad(), despacho.getPlanta());
+		espacios.add(d);
+		return d;
 	}
 	
 	public static Despacho createDespacho(String s) {
 		Despacho d = new DespachoImpl(s);
+		espacios.add(d);
 		return d;
 	}
 	
@@ -407,7 +411,7 @@ public class Grados {
 	
 	// ESPACIO
 	
-	public static Espacio createEspacio(String nombre, Integer planta, Integer capacidad, TipoEspacio tipo) {
+	public static Espacio createEspacio(TipoEspacio tipo, String nombre, Integer capacidad, Integer planta) {
 		Espacio e = new EspacioImpl(tipo, nombre, capacidad, planta);
 		espacios.add(e);
 		return e;
@@ -426,7 +430,11 @@ public class Grados {
 	}
 	
 	public static Integer getNumEspaciosCreados() {
-		return getEspaciosCreados().size();
+		Integer res = 0;
+		if (!getEspaciosCreados().isEmpty()) {
+			res = getEspaciosCreados().size();
+		}
+		return res;
 	}
 	
 	public static SortedSet<Espacio> getEspaciosCreados() {
