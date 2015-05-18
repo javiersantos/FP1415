@@ -82,62 +82,109 @@ int	leeAsignaturaTeclado(PAsignatura res) {
 	printf("Creditos: ");
 	fflush(stdout);
 	scanf("%lf", &creditos);
+	fflush(stdin);
 	printf("TipoAsignatura: ");
 	fflush(stdout);
 	gets(tipo);
 	printf("Curso: ");
 	fflush(stdout);
 	scanf("%d", &curso);
+	fflush(stdin);
 	printf("Departamento: ");
 	fflush(stdout);
 	gets(departamento);
 	ok = deCadenaATipoAsignatura(tipo, &tipo);
 	if (ok == 0) {
 		ok = inicializaAsignatura(res, nombre, codigo, creditos, tipo, curso, departamento);
+	} else {
+		printf("Error en el tipo de asignatura.");
 	}
+	return ok;
 }
 
 void muestraAsignatura(Asignatura a) {
 	Cadena acronimo, tipo;
 
-	printf("Nombre: %s", a.nombre);
+	printf("\tNombre: %s\n", a.nombre);
 	getAcronimo(a, acronimo);
-	printf("Acronimo: %s", acronimo);
-	printf("Codigo: %s", a.codigo);
-	printf("Creditos: %lf", a.creditos);
+	printf("\tAcronimo: %s\n", acronimo);
+	printf("\tCodigo: %s\n", a.codigo);
+	printf("\tCreditos: %5.1lf\n", a.creditos);
 	deTipoAsignaturaACadena(tipo, a.tipo);
-	printf("Tipo: %s", tipo);
-	printf("Curso: %d", a.curso);
-	printf("Departamento: %s", a.departamento);
+	printf("\tTipo: %s\n", tipo);
+	printf("\tCurso: %d\n", a.curso);
+	printf("\tDepartamento: %s\n", a.departamento);
 }
 
 int	leeAsignaturasTeclado(ArrayAsignaturas res) {
-	int resultados;
+	int nAsig = 0;
 	int i = 0;
 
-	printf("Introduce el numero de resultados: ");
+	printf("Introduce el numero de asignaturas a leer: ");
 	fflush(stdout);
-	scanf("%d", &resultados);
-
-	if (resultados >= sizeof(res)) {
+	scanf("%d", &nAsig);
+	fflush(stdin);
+	while (nAsig <= 0 || nAsig > NUM_MAX_ASIGNATURAS) {
+		printf("El numero de asignaturas debe estar entre 1 y %d\n", NUM_MAX_ASIGNATURAS);
 		printf("Introduce el numero de resultados: ");
 		fflush(stdout);
-		scanf("%d", &resultados);
-	} else {
-		for (i = 0; i < resultados; i++) {
-
+		scanf("%d", &nAsig);
+		fflush(stdin);
+	}
+	while (i < nAsig) {
+		printf("Asignatura[%d]:\n", i+1);
+		fflush(stdout);
+		if (leeAsignaturaTeclado(&res[i])) {
+			i++;
 		}
+	}
+	return nAsig;
+}
+
+void muestraAsignaturas(const ArrayAsignaturas res,	int	nAsig) {
+	int i =0;
+	for (i=0; i < nAsig; i++) {
+		printf("Asignatura[%d]\n", i+1);
+		muestraAsignatura(res[i]);
 	}
 
 }
 
-void muestraAsignaturas(const ArrayAsignaturas res,	int	nAsig) {
-
-
-}
-
 int leeAsignaturasFichero(const Cadena nombreFichero, ArrayAsignaturas res) {
+	int nAsig = 0;
+	int i = 0;
 
-
+	FILE* pf = NULL;
+	pf = fopen(nombreFichero);
+	if (pf == NULL) {
+		printf("Error en la apertura del fichero %s", nombreFichero);
+		nAsig = 0;
+	} else {
+		leeAsignaturasFichero(&res[0]);
+		i = 1;
+		while(feof(pf) != NULL && i < NUM_MAX_ASIGNATURAS) {
+			leeAsignaturasFichero(&res[i]);
+			i++;
+		}
+		nAsig = i;
+	}
+	fclose(pf);
+	return nAsig;
 }
 
+void leeAsignaturaFichero(PAsignatura pa, FILE* pf) {
+	Cadena aux;
+	char tonta;
+
+	fgets(pa->nombre, NUM_MAX_CARACTERES, pf);
+	quitaSaltoDeLinea(pa->nombre);
+	fgets(pa->codigo, NUM_MAX_CARACTERES, pf);
+	quitaSaltoDeLinea(pa->codigo);
+	fscanf(pf, "%lf%c", &pa->creditos, &tonta);
+	fgets(aux, NUM_MAX_CARACTERES, pf);
+	quitaSaltoDeLinea(aux);
+	deCadenaATipoAsignatura(aux, &pa->tipo);
+	fscanf(pf, "%d%c", &pa->curso, &tonta);
+	fgets(pa->departamento, NUM_MAX_CARACTERES, pf);
+	quitaSaltoDeLinea(pa->departamento);
+}

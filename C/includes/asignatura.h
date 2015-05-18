@@ -39,6 +39,7 @@ int leeAsignaturasFichero(const Cadena, ArrayAsignaturas);
 Logico compruebaCodigo(const TipoCodigo);
 Logico compruebaCreditos(double);
 Logico compruebaCurso(int);
+void leeAsignaturaFichero(PAsignatura, FILE*);
 
 
 #endif /* INCLUDES_ASIGNATURA_H_ */
