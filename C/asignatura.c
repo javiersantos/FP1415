@@ -34,9 +34,10 @@ Logico compruebaCodigo(const TipoCodigo codigo) {
 		}
 	} else {
 		res = FALSO;
-		return res;
 	}
+	return res;
 }
+
 Logico compruebaCreditos(double creditos) {
 	Logico res = CIERTO;
 	if (creditos <=0) {
@@ -155,15 +156,15 @@ int leeAsignaturasFichero(const Cadena nombreFichero, ArrayAsignaturas res) {
 	int i = 0;
 
 	FILE* pf = NULL;
-	pf = fopen(nombreFichero);
+	pf = fopen(nombreFichero, "r");
 	if (pf == NULL) {
 		printf("Error en la apertura del fichero %s", nombreFichero);
 		nAsig = 0;
 	} else {
-		leeAsignaturasFichero(&res[0]);
+		leeAsignaturasFichero(&res[0], pf);
 		i = 1;
 		while(feof(pf) != NULL && i < NUM_MAX_ASIGNATURAS) {
-			leeAsignaturasFichero(&res[i]);
+			leeAsignaturasFichero(&res[i], pf);
 			i++;
 		}
 		nAsig = i;

@@ -37,5 +37,5 @@ int	deCadenaATipoAsignatura(const Cadena tipo, TipoAsignatura *res) {
 		}
 	}
 
-	return res;
+	return ok;
 }
