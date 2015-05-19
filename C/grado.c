@@ -56,7 +56,19 @@ Logico compruebaCreditosMinimosOptativas(double minimoCreditosOptativas, const A
 	return res;
 }
 
-void muestraGrado(Grado) {
+void muestraGrado(Grado g) {
+	int i = 0;
 
-
+	printf("\tNombre: %s\n", g.nombre);
+	printf("\tCentro: %s\n", g.centro);
+	printf("\tMinimo créditos optativas: %5.0lf\n", g.minimoCreditosOptativas);
+	printf("\tAsignaturas obligatorias: \n");
+	for(i=0; i<g.numObligatorias; i++) {
+		muestraAsignatura(g.obligatorias[i]);
+	}
+	for(i=0; i<g.numOptativas; i++) {
+		muestraAsignatura(g.optativas[i]);
+	}
+	printf("\tAsignaturas optativa: \n");
 }
+
