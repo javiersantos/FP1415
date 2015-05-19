@@ -31,8 +31,6 @@ public class AlumnoImpl2 extends AlumnoImpl implements Alumno {
 	}
 	
 	public SortedMap<Asignatura, Calificacion> getCalificacionPorAsignatura() {
-		// return this.getExpediente().getNotas().stream().collect(Collectors.toMap(n -> n.getAsignatura(), n -> n.getCalificacion(), (n1, n2) -> n1, TreeMap::new));
 		return this.getExpediente().getNotas().stream().collect(Collectors.toMap(Nota::getAsignatura, Nota::getCalificacion, (p1, p2) -> p1, TreeMap::new));
 	}
-
 }

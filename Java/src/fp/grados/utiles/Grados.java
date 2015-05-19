@@ -35,6 +35,7 @@ import fp.grados.tipos.EspacioImpl;
 import fp.grados.tipos.Grado;
 import fp.grados.tipos.GradoImpl;
 import fp.grados.tipos.GradoImpl2;
+import fp.grados.tipos.Nota;
 import fp.grados.tipos.Profesor;
 import fp.grados.tipos.ProfesorImpl;
 import fp.grados.tipos.ProfesorImpl2;
@@ -271,9 +272,19 @@ public class Grados {
 	}
 	
 	public static Alumno createAlumno(Alumno alumno) {
-		Alumno res = new AlumnoImpl(alumno.getDNI(), alumno.getNombre(), alumno.getApellidos(), alumno.getFechaNacimiento(), alumno.getEmail());
-		alumnos.add(res);
-		return res;
+		Alumno a = new AlumnoImpl(alumno.getDNI(), alumno.getNombre(), alumno.getApellidos(), alumno.getFechaNacimiento(), alumno.getEmail());
+		copiaAsignaturas(a, alumno);
+		alumnos.add(a);
+		return a;
+	}
+	
+	private static void copiaAsignaturas(Alumno alumnoNuevo, Alumno alumnoAntiguo) {
+		for (Asignatura a : alumnoAntiguo.getAsignaturas()) {
+			alumnoNuevo.matriculaAsignatura(a);
+		}
+		for (Nota a : alumnoAntiguo.getExpediente().getNotas()) {
+			alumnoNuevo.evaluaAlumno(a.getAsignatura(), a.getCursoAcademico(), a.getConvocatoria(), a.getValor(), a.getMencionHonor());
+		}
 	}
 	
 	public static Integer getNumAlumnosCreados() {
@@ -314,7 +325,16 @@ public class Grados {
 	}
 	
 	public static Centro createCentro(Centro centro) {
-		return new CentroImpl(centro.getNombre(), centro.getDireccion(), centro.getNumeroPlantas(), centro.getNumeroSotanos());
+		Centro c = new CentroImpl(centro.getNombre(), centro.getDireccion(), centro.getNumeroPlantas(), centro.getNumeroSotanos());
+		copiaEspacios(c, centro);
+		centros.add(c);
+		return c;
+	}
+	
+	private static void copiaEspacios(Centro centroNuevo, Centro centroAntiguo) {
+		for (Espacio e : centroAntiguo.getEspacios()) {
+			centroNuevo.nuevoEspacio(e);
+		}
 	}
 	
 	public static Integer getNumCentrosCreados() {
