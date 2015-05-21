@@ -12,6 +12,7 @@
 #include "cadena.h"
 #include "logico.h"
 #include "tipoAsignatura.h"
+
 #define NUM_MAX_ASIGNATURAS 100
 
 typedef char TipoCodigo[8];
