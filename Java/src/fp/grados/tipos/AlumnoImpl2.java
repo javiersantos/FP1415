@@ -2,6 +2,7 @@ package fp.grados.tipos;
 
 import java.time.LocalDate;
 import java.util.Comparator;
+import java.util.Map;
 import java.util.Optional;
 import java.util.SortedMap;
 import java.util.TreeMap;
@@ -31,6 +32,16 @@ public class AlumnoImpl2 extends AlumnoImpl implements Alumno {
 	}
 	
 	public SortedMap<Asignatura, Calificacion> getCalificacionPorAsignatura() {
-		return this.getExpediente().getNotas().stream().collect(Collectors.toMap(Nota::getAsignatura, Nota::getCalificacion, (p1, p2) -> p1, TreeMap::new));
+		Map<Asignatura, Calificacion> res = getExpediente().getNotas().stream().collect(Collectors.toMap(n -> n.getAsignatura(), n -> n.getCalificacion(), (p1, p2)->calificacionMayor(p1, p2)));
+		return new TreeMap<Asignatura, Calificacion>(res);
 	}
+	
+	private Calificacion calificacionMayor(Calificacion c1, Calificacion c2) {
+		if (c1.compareTo(c2) >= 0) {
+			return c1;
+		} else {
+			return c2;
+		}
+	}
+	
 }
