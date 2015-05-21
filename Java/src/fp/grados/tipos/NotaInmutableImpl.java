@@ -23,6 +23,8 @@ final public class NotaInmutableImpl implements Nota {
 	}
 	
 	public NotaInmutableImpl(Asignatura asignatura, Integer cursoAcademico, Convocatoria convocatoria, Double valor) {
+		checkNota(valor);
+		
 		this.asignatura = new AsignaturaImpl(asignatura.getNombre(), asignatura.getCodigo(), asignatura.getCreditos(), asignatura.getTipo(), asignatura.getCurso(), asignatura.getDepartamento());
 		this.cursoAcademico = cursoAcademico;
 		this.convocatoria = convocatoria;
