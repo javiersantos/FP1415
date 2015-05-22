@@ -66,9 +66,9 @@ void muestraGrado(Grado g) {
 	for(i=0; i<g.numObligatorias; i++) {
 		muestraAsignatura(g.obligatorias[i]);
 	}
+	printf("\tAsignaturas optativa: \n");
 	for(i=0; i<g.numOptativas; i++) {
 		muestraAsignatura(g.optativas[i]);
 	}
-	printf("\tAsignaturas optativa: \n");
 }
 
