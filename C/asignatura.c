@@ -148,7 +148,6 @@ void muestraAsignaturas(const ArrayAsignaturas res,	int	nAsig) {
 		printf("Asignatura[%d]\n", i+1);
 		muestraAsignatura(res[i]);
 	}
-
 }
 
 int leeAsignaturasFichero(const Cadena nombreFichero, ArrayAsignaturas res) {
@@ -175,17 +174,17 @@ int leeAsignaturasFichero(const Cadena nombreFichero, ArrayAsignaturas res) {
 
 void leeAsignaturaFichero(PAsignatura pa, FILE* pf) {
 	Cadena aux;
-	char tonta;
+	char noSirvePaNa;
 
 	fgets(pa->nombre, NUM_MAX_CARACTERES, pf);
 	quitaSaltoDeLinea(pa->nombre);
 	fgets(pa->codigo, NUM_MAX_CARACTERES, pf);
 	quitaSaltoDeLinea(pa->codigo);
-	fscanf(pf, "%lf%c", &pa->creditos, &tonta);
+	fscanf(pf, "%lf%c", &pa->creditos, &noSirvePaNa);
 	fgets(aux, NUM_MAX_CARACTERES, pf);
 	quitaSaltoDeLinea(aux);
 	deCadenaATipoAsignatura(aux, &pa->tipo);
-	fscanf(pf, "%d%c", &pa->curso, &tonta);
+	fscanf(pf, "%d%c", &pa->curso, &noSirvePaNa);
 	fgets(pa->departamento, NUM_MAX_CARACTERES, pf);
 	quitaSaltoDeLinea(pa->departamento);
 }

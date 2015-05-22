@@ -8,7 +8,6 @@
 #ifndef INCLUDES_ASIGNATURA_H_
 #define INCLUDES_ASIGNATURA_H_
 
-#include <stdio.h>
 #include "cadena.h"
 #include "logico.h"
 #include "tipoAsignatura.h"
