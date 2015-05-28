@@ -57,7 +57,7 @@ void getAcronimo(Asignatura	a, Cadena res) {
 	int i = 0;
 	int j = 0;
 	for (i=0; i < strlen(a.nombre); i++) {
-		if (isupper(a.nombre)) {
+		if (isupper(a.nombre[i])) {
 			res[j] = a.nombre[i];
 			j++;
 		}
@@ -162,7 +162,7 @@ int leeAsignaturasFichero(const Cadena nombreFichero, ArrayAsignaturas res) {
 	} else {
 		leeAsignaturasFichero(&res[0], pf);
 		i = 1;
-		while(feof(pf) != NULL && i < NUM_MAX_ASIGNATURAS) {
+		while (!feof(pf) != NULL && i < NUM_MAX_ASIGNATURAS) {
 			leeAsignaturasFichero(&res[i], pf);
 			i++;
 		}

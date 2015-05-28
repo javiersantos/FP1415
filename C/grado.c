@@ -26,16 +26,14 @@ int inicializaGrado(PGrado res, const Cadena nombre, const Cadena centro, const 
 
 Logico compruebaCreditosOptativas(const ArrayAsignaturas optativas, int numOptativas) {
 	Logico res = CIERTO;
-	Logico esPrimero = FALSO;
 	double creditos = 0.;
 	int i = 0;
-	for(i = 0; i<numOptativas; i++) {
-		if(esPrimero) {
-			creditos = optativas[i].creditos;
-			esPrimero = CIERTO;
-		} else {
-			if(!strcmp(creditos, optativas[i].creditos)) {
+	if (numOptativas > 0) {
+		creditos = optativas[0].creditos;
+		for(i = 1; i<numOptativas; i++) {
+			if(creditos != optativas[i].creditos) {
 				res = FALSO;
+				break;
 			}
 		}
 	}
@@ -44,13 +42,12 @@ Logico compruebaCreditosOptativas(const ArrayAsignaturas optativas, int numOptat
 
 Logico compruebaCreditosMinimosOptativas(double minimoCreditosOptativas, const ArrayAsignaturas optativas, int numOptativas) {
 	Logico res = CIERTO;
-	double creditosAlumno = minimoCreditosOptativas;
 	double creditosGrado = 0.;
 	int i = 0;
 	for(i = 0; i<numOptativas; i++) {
 		creditosGrado += optativas[i].creditos;
 	}
-	if(0 > creditosAlumno || creditosGrado > creditosAlumno) {
+	if(0 > minimoCreditosOptativas || creditosGrado > minimoCreditosOptativas) {
 		res = FALSO;
 	}
 	return res;
@@ -61,14 +58,10 @@ void muestraGrado(Grado g) {
 
 	printf("\tNombre: %s\n", g.nombre);
 	printf("\tCentro: %s\n", g.centro);
-	printf("\tMinimo créditos optativas: %5.0lf\n", g.minimoCreditosOptativas);
+	printf("\tMinimo creditos optativas: %5.0lf\n", g.minimoCreditosOptativas);
 	printf("\tAsignaturas obligatorias: \n");
-	for(i=0; i<g.numObligatorias; i++) {
-		muestraAsignatura(g.obligatorias[i]);
-	}
+	muestraAsignaturas(g.obligatorias, g.numObligatorias)
 	printf("\tAsignaturas optativa: \n");
-	for(i=0; i<g.numOptativas; i++) {
-		muestraAsignatura(g.optativas[i]);
-	}
+	muestraAsignaturas(g.optativas, g.numOptativas);
 }
 
