@@ -5,6 +5,7 @@
  *      Author: Javier
  */
 #include "asignatura.h"
+#include <stdio.h>
 
 int inicializaAsignatura(PAsignatura res, const	Cadena nombre, const TipoCodigo	codigo, double creditos, TipoAsignatura	 tipo, int curso, const	Cadena departamento) {
 	int ok = 0;
@@ -70,7 +71,8 @@ int	leeAsignaturaTeclado(PAsignatura res) {
 	Cadena nombre;
 	Cadena codigo;
 	double creditos;
-	TipoAsignatura tipo;
+	Cadena tipo;
+	TipoAsignatura tipoAsig;
 	int curso;
 	Cadena departamento;
 
@@ -94,9 +96,9 @@ int	leeAsignaturaTeclado(PAsignatura res) {
 	printf("Departamento: ");
 	fflush(stdout);
 	gets(departamento);
-	ok = deCadenaATipoAsignatura(tipo, &tipo);
+	ok = deCadenaATipoAsignatura(tipo, &tipoAsig);
 	if (ok == 0) {
-		ok = inicializaAsignatura(res, nombre, codigo, creditos, tipo, curso, departamento);
+		ok = inicializaAsignatura(res, nombre, codigo, creditos, tipoAsig, curso, departamento);
 	} else {
 		printf("Error en el tipo de asignatura.");
 	}
@@ -155,15 +157,15 @@ int leeAsignaturasFichero(const Cadena nombreFichero, ArrayAsignaturas res) {
 	int i = 0;
 
 	FILE* pf = NULL;
-	pf = fopen(nombreFichero, "r");
+	pf = fopen(nombreFichero,"r");
 	if (pf == NULL) {
 		printf("Error en la apertura del fichero %s", nombreFichero);
 		nAsig = 0;
 	} else {
-		leeAsignaturasFichero(&res[0], pf);
+		leeAsignaturaFichero(&res[0], pf);
 		i = 1;
 		while (!feof(pf) != NULL && i < NUM_MAX_ASIGNATURAS) {
-			leeAsignaturasFichero(&res[i], pf);
+			leeAsignaturaFichero(&res[i], pf);
 			i++;
 		}
 		nAsig = i;

@@ -9,6 +9,7 @@
 
 int inicializaCentro(PCentro res, const Cadena nombre, const Cadena direccion, int numeroPlantas, int numeroSotanos, const ArrayEspacios espacios, int numEspacios) {
 	int ok = 0;
+	int i = 0;
 	if (!compruebaPlantas(numeroPlantas) || !compruebaSotanos(numeroSotanos)) {
 		printf("centro_c.inicializaCentro: Error en parametros");
 		ok = -1;
@@ -17,7 +18,9 @@ int inicializaCentro(PCentro res, const Cadena nombre, const Cadena direccion, i
 		strcpy(res->direccion, direccion);
 		res->numeroPlantas, numeroPlantas;
 		res->numeroSotanos, numeroSotanos;
-		strncpy(res->espacios, espacios, numEspacios);
+		for (i = 0; i < numEspacios; i++) {
+			res->espacios[i] = espacios[i];
+		}
 		res->numEspacios, numEspacios;
 	}
 	return ok;

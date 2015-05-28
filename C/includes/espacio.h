@@ -31,5 +31,8 @@ int leeEspaciosTeclado(ArrayEspacios);
 void muestraEspacios(const ArrayEspacios, int);
 int leeEspaciosFichero(const Cadena, ArrayEspacios);
 
+Logico compruebaCapacidad(int);
+void leeEspacioFichero(PEspacio, FILE*);
+
 
 #endif /* INCLUDES_ESPACIO_H_ */

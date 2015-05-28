@@ -9,6 +9,7 @@
 
 int inicializaGrado(PGrado res, const Cadena nombre, const Cadena centro, const ArrayAsignaturas obligatorias, int numObligatorias, const ArrayAsignaturas optativas, int numOptativas, double minimoCreditosOptativas) {
 	int ok = 0;
+	int i = 0;
 	if(!compruebaCreditosOptativas(optativas, numOptativas) || !compruebaCreditosMinimosOptativas(minimoCreditosOptativas, optativas, numOptativas)) {
 		printf("grado_c.inicializaGrado: Error en parametros");
 		ok = -1;
@@ -18,8 +19,12 @@ int inicializaGrado(PGrado res, const Cadena nombre, const Cadena centro, const 
 		res->numObligatorias, numObligatorias;
 		res->numOptativas, numOptativas;
 		res->minimoCreditosOptativas, minimoCreditosOptativas;
-		strncpy(res->obligatorias, obligatorias, numObligatorias);
-		strncpy(res->optativas, optativas, numOptativas);
+		for (i = 0; i < numObligatorias; i++) {
+			res->obligatorias[i] = obligatorias[i];
+		}
+		for (i = 0; i < numOptativas; i++) {
+			res->optativas[i] = optativas[i];
+		}
 	}
 	return ok;
 }
@@ -60,7 +65,7 @@ void muestraGrado(Grado g) {
 	printf("\tCentro: %s\n", g.centro);
 	printf("\tMinimo creditos optativas: %5.0lf\n", g.minimoCreditosOptativas);
 	printf("\tAsignaturas obligatorias: \n");
-	muestraAsignaturas(g.obligatorias, g.numObligatorias)
+	muestraAsignaturas(g.obligatorias, g.numObligatorias);
 	printf("\tAsignaturas optativa: \n");
 	muestraAsignaturas(g.optativas, g.numOptativas);
 }

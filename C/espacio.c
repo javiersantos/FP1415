@@ -33,7 +33,8 @@ int leeEspacioTeclado(PEspacio res) {
 	int ok = 0;
 	Cadena nombre;
 	int planta;
-	TipoEspacio tipo;
+	Cadena tipo;
+	TipoEspacio tipoEsp;
 	int capacidad;
 
 	printf("Nombre: ");
@@ -48,9 +49,9 @@ int leeEspacioTeclado(PEspacio res) {
 	printf("Capacidad: ");
 	fflush(stdout);
 	scanf("%d", &capacidad);
-	ok = deCadenaATipoEspacio(res, nombre, planta, tipo, capacidad);
+	ok = deCadenaATipoEspacio(tipo, &tipoEsp);
 	if (ok == 0) {
-		ok = inicializaEspacio(res, nombre, planta, tipo, capacidad);
+		ok = inicializaEspacio(res, nombre, planta, tipoEsp, capacidad);
 	} else {
 		printf("Error en el tipo Espacio");
 	}
@@ -83,7 +84,7 @@ int leeEspaciosTeclado(ArrayEspacios res) {
 		fflush(stdin);
 	}
 	while(i < nEspacios) {
-		pirntf("Espacios[%d]:\n", i+1);
+		printf("Espacios[%d]:\n", i+1);
 		fflush(stdout);
 		if (leeEspacioTeclado(&res[i])) {
 			i++;
@@ -105,15 +106,15 @@ int leeEspaciosFichero(const Cadena nombreFichero, ArrayEspacios res) {
 	int i = 0;
 
 	FILE* pf = NULL;
-	pf = open(nombreFichero, "r");
+	pf = fopen(nombreFichero,"r");
 	if (pf == NULL) {
 		printf("Error en la apertura del fichero %s", nombreFichero);
 		nEspacios = 0;
 	} else {
-		leeEspaciosFichero(&res[0], pf);
+		leeEspacioFichero(&res[0], pf);
 		i = 1;
-		while(feof(pf) != NULL && i < NUM_MAX_ESPACIOS) {
-			leeEspaciosFichero(&res[i], pf);
+		while(!feof(pf) != NULL && i < NUM_MAX_ESPACIOS) {
+			leeEspacioFichero(&res[i], pf);
 			i++;
 		}
 		nEspacios = i;
@@ -123,7 +124,7 @@ int leeEspaciosFichero(const Cadena nombreFichero, ArrayEspacios res) {
 
 }
 
-void leeEspaciosFichero(PEspacio pe, FILE* pf) {
+void leeEspacioFichero(PEspacio pe, FILE* pf) {
 	Cadena aux;
 	char noSirvePaNa;
 

@@ -9,6 +9,7 @@
 #define INCLUDES_CENTRO_H_
 
 #include "cadena.h"
+#include "espacio.h"
 #include <stdio.h>
 
 #define NUM_MAX_ARRAY 200
@@ -28,6 +29,9 @@ typedef int ArrayInt[NUM_MAX_ARRAY];
 int inicializaCentro(PCentro, const Cadena, const Cadena, int, int, const ArrayEspacios, int);
 void muestraCentro (Centro);
 void getConteosEspacios(const ArrayEspacios, int, ArrayInt);
+
+Logico compruebaPlantas(int);
+Logico compruebaSotanos(int);
 
 
 #endif /* INCLUDES_CENTRO_H_ */

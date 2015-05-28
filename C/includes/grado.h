@@ -9,6 +9,7 @@
 #define GRADO_H_
 
 #include "cadena.h"
+#include "asignatura.h"
 #include <stdio.h>
 
 typedef struct {
@@ -25,5 +26,8 @@ typedef Grado* PGrado;
 
 int inicializaGrado(PGrado, const Cadena, const Cadena, const ArrayAsignaturas, int, const ArrayAsignaturas, int, double);
 void muestraGrado(Grado);
+
+Logico compruebaCreditosOptativas(const ArrayAsignaturas, int);
+Logico compruebaCreditosMinimosOptativas(double, const ArrayAsignaturas, int);
 
 #endif /* GRADO_H_ */
