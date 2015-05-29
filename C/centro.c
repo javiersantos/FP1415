@@ -47,9 +47,12 @@ void muestraCentro (Centro c) {
 
 	printf("\tNombre: %s\n", c.nombre);
 	printf("\tDireccion: %s\n", c.direccion);
-	printf("\tNumero de plantas: %d", c.numeroPlantas);
-	printf("\tNumero de sotanos: %d", c.numeroSotanos);
+	printf("\tNumero de plantas: %d\n", c.numeroPlantas);
+	printf("\tNumero de sotanos: %d\n", c.numeroSotanos);
 	printf("\tEspacios: \n");
+	if (c.numEspacios == 0) {
+		printf("(No hay espacios en el centro)");
+	}
 	for (i = 0; i < c.numEspacios; i++) {
 		muestraEspacio(c.espacios[i]);
 	}
