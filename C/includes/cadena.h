@@ -14,6 +14,6 @@
 
 typedef char Cadena[NUM_MAX_CARACTERES];
 
-void quitaSaltoDeLinea(Cadena);
+void quitaSaltoDeLineaCadena(Cadena);
 
 #endif /* INCLUDES_CADENA_H_ */

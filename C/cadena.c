@@ -7,7 +7,7 @@
 
 #include "cadena.h"
 
-void quitaSaltoDeLinea(Cadena cad) {
+void quitaSaltoDeLineaCadena(Cadena cad) {
 	int i = 0;
 	for (i = 0; strlen(cad); i++) {
 		if (cad[i] == '\n') {

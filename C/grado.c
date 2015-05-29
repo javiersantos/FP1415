@@ -16,9 +16,9 @@ int inicializaGrado(PGrado res, const Cadena nombre, const Cadena centro, const 
 	} else {
 		strcpy(res->nombre, nombre);
 		strcpy(res->centro, centro);
-		res->numObligatorias, numObligatorias;
-		res->numOptativas, numOptativas;
-		res->minimoCreditosOptativas, minimoCreditosOptativas;
+		res->numObligatorias = numObligatorias;
+		res->numOptativas = numOptativas;
+		res->minimoCreditosOptativas = minimoCreditosOptativas;
 		for (i = 0; i < numObligatorias; i++) {
 			res->obligatorias[i] = obligatorias[i];
 		}

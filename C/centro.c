@@ -16,12 +16,12 @@ int inicializaCentro(PCentro res, const Cadena nombre, const Cadena direccion, i
 	} else {
 		strcpy(res->nombre, nombre);
 		strcpy(res->direccion, direccion);
-		res->numeroPlantas, numeroPlantas;
-		res->numeroSotanos, numeroSotanos;
+		res->numeroPlantas = numeroPlantas;
+		res->numeroSotanos = numeroSotanos;
 		for (i = 0; i < numEspacios; i++) {
 			res->espacios[i] = espacios[i];
 		}
-		res->numEspacios, numEspacios;
+		res->numEspacios = numEspacios;
 	}
 	return ok;
 }
@@ -56,6 +56,27 @@ void muestraCentro (Centro c) {
 }
 
 void getConteosEspacios(const ArrayEspacios espacios, int nEspacios, ArrayInt c) {
+	int res[5] = {0,0,0,0,0};
+	int i = 0;
 
-
+	for (i = 0; i < nEspacios; i++) {
+		switch (espacios[i].tipo) {
+			case TEORIA:
+				res[0]++;
+				break;
+			case LABORATORIO:
+				res[1]++;
+				break;
+			case SEMINARIO:
+				res[2]++;
+				break;
+			case EXAMEN:
+				res[3]++;
+				break;
+			default:
+				res[4]++;
+				break;
+		}
+	}
+	c = res;
 }

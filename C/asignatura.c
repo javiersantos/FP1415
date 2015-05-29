@@ -6,6 +6,7 @@
  */
 #include "asignatura.h"
 #include <stdio.h>
+#include <ctype.h>
 
 int inicializaAsignatura(PAsignatura res, const	Cadena nombre, const TipoCodigo	codigo, double creditos, TipoAsignatura	 tipo, int curso, const	Cadena departamento) {
 	int ok = 0;
@@ -164,9 +165,12 @@ int leeAsignaturasFichero(const Cadena nombreFichero, ArrayAsignaturas res) {
 	} else {
 		leeAsignaturaFichero(&res[0], pf);
 		i = 1;
-		while (!feof(pf) != NULL && i < NUM_MAX_ASIGNATURAS) {
+		while (i < NUM_MAX_ASIGNATURAS) {
 			leeAsignaturaFichero(&res[i], pf);
 			i++;
+			if (feof(pf)) {
+				break;
+			}
 		}
 		nAsig = i;
 	}
@@ -179,14 +183,24 @@ void leeAsignaturaFichero(PAsignatura pa, FILE* pf) {
 	char noSirvePaNa;
 
 	fgets(pa->nombre, NUM_MAX_CARACTERES, pf);
-	quitaSaltoDeLinea(pa->nombre);
+	quitaSaltoDeLineaAsignatura(pa->nombre);
 	fgets(pa->codigo, NUM_MAX_CARACTERES, pf);
-	quitaSaltoDeLinea(pa->codigo);
+	quitaSaltoDeLineaAsignatura(pa->codigo);
 	fscanf(pf, "%lf%c", &pa->creditos, &noSirvePaNa);
 	fgets(aux, NUM_MAX_CARACTERES, pf);
-	quitaSaltoDeLinea(aux);
+	quitaSaltoDeLineaAsignatura(aux);
 	deCadenaATipoAsignatura(aux, &pa->tipo);
 	fscanf(pf, "%d%c", &pa->curso, &noSirvePaNa);
 	fgets(pa->departamento, NUM_MAX_CARACTERES, pf);
-	quitaSaltoDeLinea(pa->departamento);
+	quitaSaltoDeLineaAsignatura(pa->departamento);
+}
+
+void quitaSaltoDeLineaAsignatura(Cadena cad) {
+	int i = 0;
+	for (i = 0; strlen(cad); i++) {
+		if (cad[i] == '\n') {
+			cad[i] = '\0';
+			break;
+		}
+	}
 }

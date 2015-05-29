@@ -14,9 +14,9 @@ int inicializaEspacio(PEspacio res, const Cadena nombre, int planta, TipoEspacio
 		ok = -1;
 	} else {
 		strcpy(res->nombre, nombre);
-		res->planta, planta;
-		res->tipo, tipo;
-		res->capacidad, capacidad;
+		res->planta = planta;
+		res->tipo = tipo;
+		res->capacidad = capacidad;
 	}
 	return ok;
 }
@@ -113,9 +113,12 @@ int leeEspaciosFichero(const Cadena nombreFichero, ArrayEspacios res) {
 	} else {
 		leeEspacioFichero(&res[0], pf);
 		i = 1;
-		while(!feof(pf) != NULL && i < NUM_MAX_ESPACIOS) {
+		while(i < NUM_MAX_ESPACIOS) {
 			leeEspacioFichero(&res[i], pf);
 			i++;
+			if (feof(pf)) {
+				break;
+			}
 		}
 		nEspacios = i;
 	}
@@ -129,10 +132,20 @@ void leeEspacioFichero(PEspacio pe, FILE* pf) {
 	char noSirvePaNa;
 
 	fgets(pe->nombre, NUM_MAX_CARACTERES, pf);
-	quitaSaltoDeLinea(pe->nombre);
+	quitaSaltoDeLineaEspacio(pe->nombre);
 	fscanf(pf, "%d%c", &pe->planta, &noSirvePaNa);
 	fgets(aux, NUM_MAX_CARACTERES, pf);
-	quitaSaltoDeLinea(aux);
+	quitaSaltoDeLineaEspacio(aux);
 	deCadenaATipoEspacio(aux, &pe->tipo);
 	fscanf(pf, "%d%c", &pe->capacidad, &noSirvePaNa);
+}
+
+void quitaSaltoDeLineaEspacio(Cadena cad) {
+	int i = 0;
+	for (i = 0; strlen(cad); i++) {
+		if (cad[i] == '\n') {
+			cad[i] = '\0';
+			break;
+		}
+	}
 }

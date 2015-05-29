@@ -34,5 +34,7 @@ int leeEspaciosFichero(const Cadena, ArrayEspacios);
 Logico compruebaCapacidad(int);
 void leeEspacioFichero(PEspacio, FILE*);
 
+void quitaSaltoDeLineaEspacio(Cadena);
+
 
 #endif /* INCLUDES_ESPACIO_H_ */

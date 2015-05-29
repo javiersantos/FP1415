@@ -12,6 +12,8 @@ void testAnual();
 
 int main(void) {
 	testAnual();
+
+	return 0;
 }
 
 void testAnual() {

@@ -41,5 +41,7 @@ Logico compruebaCreditos(double);
 Logico compruebaCurso(int);
 void leeAsignaturaFichero(PAsignatura, FILE*);
 
+void quitaSaltoDeLineaAsignatura(Cadena);
+
 
 #endif /* INCLUDES_ASIGNATURA_H_ */

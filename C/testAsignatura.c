@@ -9,6 +9,8 @@
 #include <stdio.h>
 
 int main (void) {
+	PAsignatura pa;
+	leeAsignaturaTeclado(pa);
 
-
+	return 0;
 }
