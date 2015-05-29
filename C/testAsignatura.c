@@ -10,6 +10,7 @@
 
 void testGetAcronimo();
 void testMuestraAsignatura();
+int testLeeAsignaturasFichero();
 
 int main (void) {
 	testGetAcronimo();
@@ -18,6 +19,8 @@ int main (void) {
 	leeAsignaturaTeclado(pa);
 
 	testMuestraAsignatura();
+
+	printf("Numero de asignaturas leidas: %d", testLeeAsignaturasFichero());
 
 	return 0;
 }
@@ -47,4 +50,11 @@ void testMuestraAsignatura() {
 	a.curso = 1;
 
 	muestraAsignatura(a);
+}
+
+int testLeeAsignaturasFichero() {
+	const Cadena fichero = "res/asignaturas.txt";
+	ArrayAsignaturas res;
+
+	return leeAsignaturasFichero(fichero, res);
 }

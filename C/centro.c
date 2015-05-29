@@ -51,7 +51,7 @@ void muestraCentro (Centro c) {
 	printf("\tNumero de sotanos: %d\n", c.numeroSotanos);
 	printf("\tEspacios: \n");
 	if (c.numEspacios == 0) {
-		printf("(No hay espacios en el centro)");
+		printf("(No hay espacios en el centro)\n");
 	}
 	for (i = 0; i < c.numEspacios; i++) {
 		muestraEspacio(c.espacios[i]);
@@ -59,27 +59,25 @@ void muestraCentro (Centro c) {
 }
 
 void getConteosEspacios(const ArrayEspacios espacios, int nEspacios, ArrayInt c) {
-	int res[5] = {0,0,0,0,0};
 	int i = 0;
 
 	for (i = 0; i < nEspacios; i++) {
 		switch (espacios[i].tipo) {
 			case TEORIA:
-				res[0]++;
+				c[0]++;
 				break;
 			case LABORATORIO:
-				res[1]++;
+				c[1]++;
 				break;
 			case SEMINARIO:
-				res[2]++;
+				c[2]++;
 				break;
 			case EXAMEN:
-				res[3]++;
+				c[3]++;
 				break;
 			default:
-				res[4]++;
+				c[4]++;
 				break;
 		}
 	}
-	c = res;
 }

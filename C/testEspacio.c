@@ -9,12 +9,15 @@
 #include <stdio.h>
 
 void testMuestraEspacio();
+int testLeeEspaciosFichero();
 
 int main (void) {
 	PEspacio pe;
 	leeEspacioTeclado(pe);
 
 	testMuestraEspacio();
+
+	printf("Numero de espacios leidos: %d", testLeeEspaciosFichero());
 
 	return 0;
 }
@@ -27,4 +30,11 @@ void testMuestraEspacio() {
 	e1.tipo = TEORIA;
 
 	muestraEspacio(e1);
+}
+
+int testLeeEspaciosFichero() {
+	const Cadena fichero = "res/espacios.txt";
+	ArrayEspacios res;
+
+	return leeEspaciosFichero(fichero, res);
 }
