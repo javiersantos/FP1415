@@ -26,7 +26,7 @@ public class GradoImpl2 extends GradoImpl implements Grado {
 	public Asignatura getAsignatura(String codigo) {
 		return Stream.concat(this.getAsignaturasObligatorias().stream(), this.getAsignaturasOptativas().stream()).filter(a -> a.getCodigo().equals(codigo)).findFirst().get();
 	}
-	
+
 	public Set<Departamento> getDepartamentos() {
 		return Stream.concat(this.getAsignaturasObligatorias().stream(), this.getAsignaturasOptativas().stream()).map(Asignatura::getDepartamento).collect(Collectors.toSet());
 	}

@@ -9,6 +9,7 @@
 #include <stdio.h>
 
 void testMuestraEspacio();
+void testMuestraEspacios();
 int testLeeEspaciosFichero();
 
 int main (void) {
@@ -16,6 +17,7 @@ int main (void) {
 	leeEspacioTeclado(pe);
 
 	testMuestraEspacio();
+	testMuestraEspacios();
 
 	printf("Numero de espacios leidos: %d", testLeeEspaciosFichero());
 
@@ -30,6 +32,20 @@ void testMuestraEspacio() {
 	e1.tipo = TEORIA;
 
 	muestraEspacio(e1);
+}
+
+void testMuestraEspacios() {
+	ArrayEspacios res;
+	strcpy(res[0].nombre, "H0.13");
+	res[0].planta = 0;
+	res[0].capacidad = 60;
+	res[0].tipo = TEORIA;
+	strcpy(res[1].nombre, "A1.03");
+	res[1].planta = 0;
+	res[1].capacidad = 50;
+	res[1].tipo = EXAMEN;
+
+	muestraEspacios(res, 2);
 }
 
 int testLeeEspaciosFichero() {
