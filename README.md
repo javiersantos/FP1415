@@ -3,7 +3,26 @@ Trabajo Práctico de la asignatura "Fundamentos de Programación" - ETSII
 
 ## ¿Qué incluye?
 * Métodos básicos de introducción a Java 7 y Java 8.
-* Métodos básicos de introducción a C. 
+* Métodos básicos de introducción a C.
+
+## Enunciados
+#### Java
+* [Boletín 1](https://github.com/javiersantos/FP1415/blob/master/Boletines/FP%20-%20T01%20-%20Trabajo%20Práctico%202014-15.pdf)
+* [Boletín 2](https://github.com/javiersantos/FP1415/blob/master/Boletines/FP%20-%20T02%20-%20Trabajo%20Práctico%202014-15.pdf)
+* [Boletín 3](https://github.com/javiersantos/FP1415/blob/master/Boletines/FP%20-%20T03%20-%20Trabajo%20Práctico%202014-15.pdf)
+* [Boletín 4](https://github.com/javiersantos/FP1415/blob/master/Boletines/FP%20-%20T04%20-%20Trabajo%20Práctico%202014-15.pdf)
+* [Boletín 5](https://github.com/javiersantos/FP1415/blob/master/Boletines/FP%20-%20T05%20-%20Trabajo%20Práctico%202014-15.pdf)
+* [Boletín 6](https://github.com/javiersantos/FP1415/blob/master/Boletines/FP%20-%20T06%20-%20Trabajo%20Práctico%202014-15.pdf)
+* [Boletín 7](https://github.com/javiersantos/FP1415/blob/master/Boletines/FP%20-%20T07%20-%20Trabajo%20Práctico%202014-15.pdf)
+* [Boletín 8](https://github.com/javiersantos/FP1415/blob/master/Boletines/FP%20-%20T08%20-%20Trabajo%20Práctico%202014-15.pdf)
+* [Boletín 9](https://github.com/javiersantos/FP1415/blob/master/Boletines/FP%20-%20T09%20-%20Trabajo%20Práctico%202014-15.pdf)
+* [Boletín 10](https://github.com/javiersantos/FP1415/blob/master/Boletines/FP%20-%20T10%20-%20Trabajo%20Práctico%202014-15.pdf)
+* [Boletín 11](https://github.com/javiersantos/FP1415/blob/master/Boletines/FP%20-%20T11%20-%20Trabajo%20Práctico%202014-15.pdf)
+* [Boletín 12](https://github.com/javiersantos/FP1415/blob/master/Boletines/FP%20-%20T12%20-%20Trabajo%20Práctico%202014-15.pdf)
+* [Boletín 13](https://github.com/javiersantos/FP1415/blob/master/Boletines/FP%20-%20T13%20-%20Trabajo%20Práctico%202014-15.pdf)
+
+#### C
+* [Boletín 1](https://github.com/javiersantos/FP1415/blob/master/Boletines/FP%20-%20T14%20-%20Trabajo%20Práctico%202014-15.pdf)
 
 ## License
     Copyright (c) 2015 Javier Santos
